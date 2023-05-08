@@ -11,16 +11,17 @@ using namespace std;
 class Character{
     private:
         Point location;
-        int hp; //Hit points.
+        int hps; 
         string name;
 
     public:
-        virtual bool isAlive() const=0;
-        virtual double distance(Character* other_character)const=0;
+        Character(string name, Point location);
+        bool isAlive();
+        double distance(Character* other_character);
         void hit(int dmg);
         string getName();
-        virtual Point getLocation()const=0;
-        void print();   
+        Point getLocation();
+        string print();   
 
 };
 #endif

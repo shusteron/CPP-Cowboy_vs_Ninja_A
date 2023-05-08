@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 namespace ariel{}
-using namespace std;
 
 class Point{
     private:

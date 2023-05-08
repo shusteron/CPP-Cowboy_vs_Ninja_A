@@ -2,6 +2,7 @@
 #define NINJA_HPP
 
 #include "Character.hpp"
+#include <stdio.h>
 #include <iostream>
 
 namespace ariel{}
@@ -11,8 +12,7 @@ class Ninja: public Character{
         int speed;
 
     public:
-        Ninja();
-        Ninja(Point location, int hp, string name, int speed);
+        Ninja(string name, Point location);
         void move(Character* enemy);     
         void slash(Character* enemy);
 };

@@ -5,9 +5,8 @@
 namespace ariel{}
 using namespace std;
 
-Ninja Ninja::Ninja(){}
 
-Ninja Ninja::Ninja(Point location, int hp, string name, int speed):Character(location,hp,name), speed(0){
+Ninja::Ninja(string name, Point location):Character(name,location){
 
 }
 

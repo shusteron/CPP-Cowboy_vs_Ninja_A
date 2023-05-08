@@ -6,6 +6,10 @@
 namespace ariel{}
 using namespace std;
 
+Character::Character(string name, Point location): location(location), name(name){
+
+}
+
 bool Character::isAlive(){
     return false;
 }
@@ -19,13 +23,14 @@ void Character::hit(int dmg){
 }
 
 string Character::getName(){
-    return "";
+    return this->name;
 }
 
 Point Character::getLocation(){
     return Point(0,0);
 }
 
-void Character::print(){
+string Character::print(){
+    return "";
 }
 

@@ -13,8 +13,7 @@ class Cowboy:  public Character{
         int bullets;
 
     public:
-        Cowboy();
-        Cowboy(Point location, int hp, string name, int bullets);
+        Cowboy(string name, Point location);
         void shoot(Character* enemy);
         bool hasBoolets();
         void reload();

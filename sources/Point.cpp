@@ -12,7 +12,7 @@ Point::Point(double x, double y){
 }
 
 double Point::distance(Point point){
-    return 0.0;
+    return -1;
 }
 
 void Point::print(){

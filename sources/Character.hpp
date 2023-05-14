@@ -13,6 +13,7 @@ class Character{
         Point location;
         int hps; 
         string name;
+        bool team_flag = false;
 
     public:
         Character(string name, Point location);
@@ -22,6 +23,8 @@ class Character{
         string getName();
         Point getLocation();
         string print();   
+        bool isHasTeam();
+        void setHasTeam(bool flag);
 
 };
 #endif

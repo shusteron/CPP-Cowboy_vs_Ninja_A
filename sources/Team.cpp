@@ -7,10 +7,10 @@ using namespace std;
 
 
 Team::Team(Character* leader): leader(leader){
-    // this->team.push_back(leader);
+    this->team.push_back(leader);
 }
 
-void Team::add(Character* legend){
+void Team::add(Character* character){
 
 }
 
@@ -24,4 +24,12 @@ int Team::stillAlive(){
 
 void Team::print(){
 
+}
+
+Team::~Team(){
+    for (Character* character : team) {
+        delete character;
+    }
+    // Clear the team vector
+    team.clear();
 }

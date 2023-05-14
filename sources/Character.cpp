@@ -31,6 +31,14 @@ Point Character::getLocation(){
 }
 
 string Character::print(){
-    return "";
+    return "blabla";
+}
+
+bool Character::isHasTeam(){
+    return false;
+}
+
+void Character::setHasTeam(bool flag){
+
 }
 

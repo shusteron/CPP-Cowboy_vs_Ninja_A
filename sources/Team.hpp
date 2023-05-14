@@ -14,14 +14,15 @@ namespace ariel{}
 
 class Team{
     private:
-        vector<Character> team;
+        vector<Character*> team;
         Character* leader;
 
     public:
         Team(Character* leader);
-        void add(Character* legend);
+        void add(Character* character);
         void attack(Team* enemy_team);
         int stillAlive();
         void print();   
+        ~Team();
 };
 #endif

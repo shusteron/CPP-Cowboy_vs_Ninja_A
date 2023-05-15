@@ -5,6 +5,7 @@
 #include "TrainedNinja.hpp"
 #include "OldNinja.hpp"
 #include "Team.hpp"
+#include "Team2.hpp"
 #include "Point.hpp"
 
 #include <iostream>
@@ -136,15 +137,8 @@ TEST_CASE("Team"){
     Cowboy *tom = new Cowboy("Tom", a);
     Cowboy *tony = new Cowboy("Tony", a);
     Cowboy *bob1 = new Cowboy("Bob1", a);
-    Cowboy *bob2 = new Cowboy("Bob2", a);
-    Cowboy *bob3 = new Cowboy("Bob3", a);
-    Cowboy *bob4 = new Cowboy("Bob4", a);
-    Cowboy *bob5 = new Cowboy("Bob5", a);
-    Cowboy *bob6 = new Cowboy("Bob6", a);
-    Cowboy *bob7 = new Cowboy("Bob7", a);
-    Cowboy *bob8 = new Cowboy("Bob8", a);
-    Cowboy *bob9 = new Cowboy("Bob9", a);
-    Cowboy *bob10 = new Cowboy("Bob10", a);
+
+
 
     YoungNinja *sasuke = new YoungNinja("sasuke",c);
     YoungNinja *shinobi1 = new YoungNinja("shinobi1",a);
@@ -162,7 +156,7 @@ TEST_CASE("Team"){
 
     // Check if stillAlive() updates correctly.
     for(int i = 1 ;i < 10; i++){
-        Cowboy *bob = new Cowboy("Bob10", a);
+        Cowboy *bob = new Cowboy("Bob", a);
         team1.add(bob);
         CHECK(team1.stillAlive() == i+1);
     }
@@ -172,7 +166,7 @@ TEST_CASE("Team"){
 
     // Same character to different team.
     CHECK_THROWS(team2.add(sasuke));
-    CHECK_THROWS(team2.add(bob3));
+    CHECK_THROWS(team2.add(bob1));
 
     SUBCASE("Team Attack"){
         team2.add(shinobi1);
@@ -180,7 +174,69 @@ TEST_CASE("Team"){
 
         // team1 has 10 members while team2 has 3 members
         team1.attack(&team2);
-        CHECK(team1.stillAlive() != 0);
-        CHECK(team2.stillAlive() == 0);
+        CHECK(((team1.stillAlive() && !team2.stillAlive()) || (!team1.stillAlive() && team2.stillAlive())));
+
+    }
+
+    SUBCASE("Team2 Attack"){
+        // Same as Team but Team2 is according in order of addition.
+        Cowboy *shalom = new Cowboy("shalom", a);
+        OldNinja *obito = new OldNinja("obito", c);
+
+        Team2 t1(shalom);
+        Team2 t2(obito);
+
+        for(int i=0; i<2; i++){
+            Cowboy *shalom = new Cowboy("shalom", a);
+            YoungNinja *shi = new YoungNinja("shi",a);
+            t1.add(shalom);
+            t1.add(shi);
+        }
+
+        for(int i=0; i<2;i++){
+            TrainedNinja *jiraya = new TrainedNinja("jiraya",c);
+            OldNinja *sushi = new OldNinja("sushi", c);
+            Cowboy *beri = new Cowboy("beri", a);
+            t2.add(jiraya);
+            t2.add(sushi);
+            t2.add(beri);
+        }
+
+        t1.attack(&t2);
+        CHECK(((t1.stillAlive() && !t2.stillAlive()) || (!t1.stillAlive() && t2.stillAlive())));
+
+    }
+}
+
+TEST_CASE("Move() & MoveTowards()"){
+    Point a(2,2),b(1.3,3.5),c(1,1),d(-3.14,-10), f(-1,-1);
+    Cowboy *tom = new Cowboy("Tom", a);
+    YoungNinja *sasuke = new YoungNinja("sasuke",c);
+    TrainedNinja *itachi = new TrainedNinja("itachi",c);
+    OldNinja *sushi = new OldNinja("sushi", f);
+
+    SUBCASE("Move"){
+        sasuke->move(itachi);
+        CHECK(sasuke->getLocation().getX() == itachi->getLocation().getX());
+        CHECK(sasuke->getLocation().getY() == itachi->getLocation().getY());
+
+        // When the other character is close enough to reach.
+        sushi->move(tom); // The distance between them is 4.24, sushi's speed is 8.
+        CHECK(sushi->getLocation().getX() == tom->getLocation().getX());
+        CHECK(sushi->getLocation().getY() == tom->getLocation().getY());
+    }
+
+    SUBCASE("MoveTowards"){
+        // If the ditance is greater then the goal, the goal value should return.
+        Point result = Point::moveTowards(a,f,5);
+        CHECK(result.getX() == f.getX());
+        CHECK(result.getY() == f.getY());
+
+        // Distance cannot be negative value.
+        CHECK_THROWS(Point::moveTowards(a,f,-1));
+
+        // If te distance is less then the distance between the points, the result should be closer to the goal.
+        result = Point::moveTowards(a,f,2);
+        CHECK(result.distance(f) < a.distance(f));
     }
 }

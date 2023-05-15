@@ -14,7 +14,9 @@ class Point{
         Point(double x, double y);   
         double distance(Point point);
         void print(); 
-        Point moveTowards(Point from, Point goal, double distance);
+        static Point moveTowards(Point from, Point goal, double distance);
+        double getX();
+        double getY();
 };
 
 #endif

@@ -22,3 +22,11 @@ void Point::print(){
 Point Point::moveTowards(Point from, Point goal, double distance){
     return Point(0,0);
 }
+
+double Point::getX(){
+    return this->x;
+}
+
+double Point::getY(){
+    return this->y;
+}

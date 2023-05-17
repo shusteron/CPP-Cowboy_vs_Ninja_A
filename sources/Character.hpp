@@ -18,13 +18,25 @@ class Character{
     public:
         Character(string name, Point location);
         bool isAlive();
-        double distance(Character* other_character);
+        double distance(Character* other);
         void hit(int dmg);
         string getName();
-        Point getLocation();
+        Point getLocation() const;
         string print();   
         bool isHasTeam();
         void setHasTeam(bool flag);
+        // To pass tidy:
+
+        // Destructor.
+        virtual ~Character() = default;
+        // Copy constuctor.
+        Character(const Character& other);
+        // Copy assigment opertor ( = ).
+        Character& operator=(const Character& other);
+        // Move operator
+        Character& operator=(Character&& other) noexcept;
+        // Move
+        Character(Character&& other) noexcept;
 
 };
 #endif

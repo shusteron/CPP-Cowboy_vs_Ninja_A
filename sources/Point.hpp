@@ -7,11 +7,11 @@ namespace ariel{}
 
 class Point{
     private:
-        double x;
-        double y;
+        double _x_;
+        double _y_;
 
     public:
-        Point(double x, double y);   
+        Point(double _x_, double _y_);   
         double distance(Point point);
         void print(); 
         static Point moveTowards(Point from, Point goal, double distance);

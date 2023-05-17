@@ -33,3 +33,36 @@ Team::~Team(){
     // Clear the team vector
     team.clear();
 }
+
+// To pass tidy methods:
+
+// Copy constuctor.
+Team::Team(Team& other){
+    team = other.team;
+    leader = other.leader;
+}
+
+// Copy assigment operator (=).
+Team& Team::operator=(const Team& other){
+    if(this == &other){
+        return *this;
+    }
+    team = other.team;
+    leader = other.leader;
+
+    return *this;
+}
+
+//Move assigment operator (=).
+Team& Team::operator=(Team&& other) noexcept{
+    team = other.team;
+    leader = other.leader;
+
+    return *this;
+}
+
+// Move
+Team::Team(Team&& other) noexcept{
+    team = other.team;
+    leader = other.leader;
+}

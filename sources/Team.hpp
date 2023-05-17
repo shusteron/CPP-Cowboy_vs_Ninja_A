@@ -23,6 +23,17 @@ class Team{
         void attack(Team* enemy_team);
         int stillAlive();
         void print();   
-        ~Team();
+        // To pass tidy:
+
+        // Destructor.
+        virtual ~Team();
+        // Copy constuctor.
+        Team(Team& other);
+        // Copy assigment opertor ( = ).
+        Team& operator=(const Team& other);
+        // Move operator.
+        Team& operator=(Team&& other) noexcept;
+        // Move
+        Team(Team&& other) noexcept;
 };
 #endif

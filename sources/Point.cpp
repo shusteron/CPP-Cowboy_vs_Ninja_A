@@ -7,8 +7,8 @@ using namespace std;
 
 
 Point::Point(double x, double y){
-    this->x = x;
-    this->y = y;
+    this->_x_ = x;
+    this->_y_ = y;
 }
 
 double Point::distance(Point point){
@@ -16,7 +16,7 @@ double Point::distance(Point point){
 }
 
 void Point::print(){
-    cout << "(" + to_string(this->x) + "," + to_string(this->y) + ")"<<endl;
+    cout << "(" + to_string(this->_x_) + "," + to_string(this->_y_) + ")"<<endl;
 }
 
 Point Point::moveTowards(Point from, Point goal, double distance){
@@ -24,9 +24,9 @@ Point Point::moveTowards(Point from, Point goal, double distance){
 }
 
 double Point::getX(){
-    return this->x;
+    return this->_x_;
 }
 
 double Point::getY(){
-    return this->y;
+    return this->_y_;
 }
